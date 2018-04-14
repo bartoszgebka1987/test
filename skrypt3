@@ -1,0 +1,4 @@
+#!/bin/bash
+
+a=$(cd / && ls -la | grep 'bin')
+echo $a

@@ -1,0 +1,10 @@
+
+#!/bin/bash
+n=1;
+# gdy warunek stanie się fałszywy to petla zakonczy dzialanie
+while [ $n -le 15 ]
+do
+  echo "Petla wykonuje sie po raz: $n"
+  n=$[n + 1]
+done
+exit 

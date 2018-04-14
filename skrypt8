@@ -1,0 +1,4 @@
+#!/bin/bash
+
+
+echo "Oto nazwa tego skryptu: $0"
