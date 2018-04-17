@@ -1,0 +1,79 @@
+import random
+
+suma=0
+lista=[]
+liczba_losowan=10000
+#Funkcja sluzaca do wybrania liczb przez gracza
+def init():
+    for i in range(0, 6):
+        try:
+            c = int(input("Podaj " + str(i+1) + " liczbe: "))
+        except ValueError:
+            print("Oops!  That was no valid number.  Try again...")
+        lista.append(c)
+    if len(set(lista)) != 6:
+        print("Podany zestaw liczb jet nieprawidlowy, liczby nie moga sie powtarzac! Sprobuj jeszcze raz!")
+        del lista[:]
+        init()
+    liczby=[abs(x) for x in lista]
+    return liczby
+
+#Funkcja sluzaca do podliczania ilosci trafien przez gracza
+def rozpoznawanie_ilosci_wygranej(a,b):
+    print("Twoje liczby: " + str(a))
+    print("Wylosowane liczby: " + str(b))
+    x=0
+    for i in a:
+        for y in b:
+            if i == y:
+                x=x+1
+
+    return x
+
+#Funkcja sluzaca do obliczania kwoty wygranej na podstawie poprzedniej funkcji
+def obliczanie_wygranej(f):
+    global suma
+    if f < 3:
+        print("Nic nie wygrales!")
+    elif f == 3:
+        print("Trafiles trojke czyli wygrales 5000zl!")
+        suma=suma+24
+    elif f == 4:
+        print("Trafiles czworke czyli wygrales 15000zl")
+        suma=suma+200
+    elif f == 5:
+        print("Trafiles piatke czyli wygrales 200000zl")
+        suma=suma+10000
+    elif f ==6:
+        print("Trafiles szostke czyli wygrales 5000000zl")
+        suma=suma+1000000
+
+
+#Funkcja losujaca 6 w danym zakladzie
+def random_number():
+    import random
+    lista=[]
+    olo=[]
+    while len(lista) < 6:
+        c=random.randrange(1,49)
+        lista.append(c)
+        olo=set(lista)
+        lista=list(olo)
+    return(lista)
+
+
+#Znana wszystkim dobrze funkcja Main czyli wykonywanie programu
+a=init()
+print("Oto wybrane liczby: " + str(a))
+for i in range(1,liczba_losowan):
+
+    b=random_number()
+    c=rozpoznawanie_ilosci_wygranej(a,b)
+    obliczanie_wygranej(c)
+
+print("\nLaczna suma twoich wygranych wynosi: " + str(suma) + " zlotych !")
+
+
+
+
+
